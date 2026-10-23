@@ -14,37 +14,26 @@ package id.ac.polinema.uts.rental;
  *   public ____ country;
  */
 public class Brand {
+    public String name;
+    public String country;
 
     /** Membuat merek dengan nama dan negara asal. */
     public Brand(String name, String country) {
-        // TODO Bantuan: nama parameter sama dengan nama field. Kata kunci apa yang
-        // menunjuk ke objek yang sedang dibuat?
-        //
-        // Kerangka:
-        //   this.name = ____;
-        //   this.country = ____;
-        throw new UnsupportedOperationException("Not implemented yet");
+      this.name = name;
+      this.country = country;  
+
     }
 
     public String getName() {
-        // TODO Bantuan: kembalikan data yang disimpan constructor.
-        //
-        // Kerangka:
-        //   return ____;
-        throw new UnsupportedOperationException("Not implemented yet");
+        return name;
     }
 
     public String getCountry() {
-        // TODO Bantuan: sama seperti getName.
-        throw new UnsupportedOperationException("Not implemented yet");
+        return country;
     }
 
     /** Teks berbentuk "nama (negara)". Contoh: Wuling (China). */
     public String getInfo() {
-        // TODO Bantuan: gabungkan dua data dengan operator + dan tanda kurung dalam String.
-        //
-        // Kerangka:
-        //   return name + " (" + ____ + ")";
-        throw new UnsupportedOperationException("Not implemented yet");
+        return name + "("+ country + ")";
     }
 }

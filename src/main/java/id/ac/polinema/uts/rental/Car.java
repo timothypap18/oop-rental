@@ -17,54 +17,41 @@ package id.ac.polinema.uts.rental;
  *   public ____ available;
  */
 public class Car {
+    public String plate;
+    public String model;
+    public int year;
+    public boolean available;
+    private Brand brand;
 
-    /**
-     * Membuat mobil baru yang masih tersedia (belum disewa).
-     * Bagian 3: plate tidak boleh kosong; model dan year divalidasi seperti setter-nya
-     * (tahun minimal 1990).
-     */
+    public Brand getBrand() {
+        return brand;
+    }
+    
     public Car(String plate, String model, int year) {
-        // TODO Bantuan: isi semua field. Mobil baru: apakah sedang disewa atau tidak?
-        // Bagian 3: aturan validasi model dan tahun sama dengan setter. Bisakah constructor
-        // memakai setter-nya?
-        //
-        // Kerangka (Bagian 2):
-        //   this.plate = plate;
-        //   this.model = ____;
-        //   this.year = ____;
-        //   this.available = ____;
-        //
-        // Kerangka (Bagian 3): ganti dua baris model dan year dengan pemanggilan setter.
-        //   setModel(____);
-        //   setYear(____);
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (plate == null || plate.trim().isEmpty()) {
+            throw new IllegalArgumentException("Plate tidak boleh kosong");
+        }
+        this.plate = plate;
+        setModel(model);
+        setYear(year);
+        this.available = true;
     }
 
     public String getPlate() {
-        // TODO Bantuan: kembalikan data yang disimpan constructor.
-        //
-        // Kerangka:
-        //   return ____;
-        throw new UnsupportedOperationException("Not implemented yet");
+        return plate;
     }
 
     public String getModel() {
-        // TODO Bantuan: sama seperti getPlate.
-        throw new UnsupportedOperationException("Not implemented yet");
+        return model;
     }
 
     public int getYear() {
-        // TODO Bantuan: sama seperti getPlate.
-        throw new UnsupportedOperationException("Not implemented yet");
+        return year;
     }
 
     /** True jika mobil ada di garasi (tidak sedang disewa). */
     public boolean isAvailable() {
-        // TODO Bantuan: field apa yang menyimpan status sewa?
-        //
-        // Kerangka:
-        //   return ____;
-        throw new UnsupportedOperationException("Not implemented yet");
+        return available;
     }
 
     /**
@@ -72,25 +59,17 @@ public class Car {
      * disewa, hasilnya false dan keadaan mobil tidak berubah.
      */
     public boolean rentOut() {
-        // TODO Bantuan: apa yang harus kamu periksa lebih dulu sebelum mengubah status?
-        // Method ini punya dua jalur return yang berbeda.
-        //
-        // Kerangka:
-        //   if (____) {
-        //       return false;
-        //   }
-        //   ____ = false;
-        //   return true;
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (!available) {
+            return false;
+        } else {
+            available = false;
+            return true;
+        }
     }
 
     /** Mobil dikembalikan: mobil bisa disewa lagi. */
     public void returnVehicle() {
-        // TODO Bantuan: satu baris saja. Status apa yang berubah?
-        //
-        // Kerangka:
-        //   ____ = true;
-        throw new UnsupportedOperationException("Not implemented yet");
+        available = true;
     }
 
     /**
@@ -98,15 +77,10 @@ public class Car {
      * dengan IllegalArgumentException, dan model lama tetap.
      */
     public void setModel(String model) {
-        // TODO Bantuan: periksa dulu, baru isi field. Class String punya method untuk
-        // memeriksa teks kosong atau hanya spasi. Jangan lupa kemungkinan null.
-        //
-        // Kerangka:
-        //   if (model == null || ____) {
-        //       throw new IllegalArgumentException("____");
-        //   }
-        //   this.model = model;
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (model == null || model.trim().isEmpty()) {
+            throw new IllegalArgumentException("Model tidak boleh kosong");
+        }
+        this.model = model;
     }
 
     /**
@@ -114,13 +88,9 @@ public class Car {
      * IllegalArgumentException, dan tahun lama tetap.
      */
     public void setYear(int year) {
-        // TODO Bantuan: pola yang sama dengan setModel. Apa syarat tahun yang valid?
-        //
-        // Kerangka:
-        //   if (year ____ 1990) {
-        //       throw new IllegalArgumentException("____");
-        //   }
-        //   this.year = year;
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (year < 1990) {
+            throw new IllegalArgumentException("Tahun tidak boleh di bawah 1990");
+        }
+        this.year = year;
     }
 }

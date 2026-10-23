@@ -1,26 +1,22 @@
 package id.ac.polinema.uts.rental;
 
-/**
- * Titik awal program (satu-satunya method main di proyek ini).
- *
- * Bagian 1: baris PERTAMA output harus persis "Welcome to Polinema Rental".
- * Setelah itu kamu bebas menambah baris lain untuk bereksperimen.
- *
- * Bagian 7: di bawah baris sapaan, kamu akan membuat RentalShop, mengisi data
- * contoh, lalu menjalankan RentalApp. Kerangkanya ada di README.
- */
+import java.util.Scanner;
+
 public class Main {
-
     public static void main(String[] args) {
-        // TODO: Tampilkan sebuah teks ke layar.
-        // Di Java, perintahnya berbentuk: System.out.println("teks kamu");
-        // Ganti teks di dalam tanda kutip dengan teks dari soal. Huruf besar-kecil dan
-        // spasi harus persis sama. Tulis perintahnya di dalam kurung kurawal main ini,
-        // lalu jalankan programnya.
-        //
-        // Kerangka:
-        //   System.out.println("____");
+        System.out.println("Welcome to Polinema Rental");
 
-        // Bagian 7: lanjutkan di sini (buat RentalShop, isi data contoh, jalankan RentalApp).
+        RentalShop shop = new RentalShop("Polinema Rental");
+
+        // PERHATIKAN: String pakai tanda kutip "", dan Car pakai 4 parameter (ada Brand)
+        shop.addVehicle(new Car("N 1203 AB", "Avanza", 2009, new Brand("Toyota", "Japan")));
+        
+        shop.addVehicle(new Motorcycle("Vario", 2022, 125));
+        shop.addVehicle(new Truck("Canter", 2020, 4));
+        
+        shop.addCustomer(new Customer("C001", "Dewi"));
+
+        RentalApp app = new RentalApp(shop, new Scanner(System.in), System.out);
+        app.run();
     }
 }
